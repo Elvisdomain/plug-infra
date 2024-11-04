@@ -22,9 +22,11 @@ module "ecs" {
 }
 
 # ALB Module
-
 module "alb" {
-  source = "./modules/alb"
-  alb_security_groups = [module.vpc.default_security_group_id]
-  subnets             = module.vpc.public_subnets
+  source              = "./modules/alb"
+  vpc_id              = module.vpc.vpc_id
+  security_group_id    = aws_security_group.my_sg.id
+  public_subnets      = module.vpc.public_subnets
+  ecs_service_name    = module.ecs.service_name
+  target_group_arn    = module.ecs.target_group_arn
 }
