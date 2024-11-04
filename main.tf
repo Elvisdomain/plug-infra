@@ -30,7 +30,6 @@ module "alb" {
   public_subnets      = module.vpc.public_subnets
   ecs_service_name    = module.ecs.service_name
   target_group_arn    = module.ecs.target_group_arn
-<<<<<<< HEAD
 }
 
 resource "aws_security_group" "my_sg" {
@@ -51,6 +50,4 @@ resource "aws_security_group" "my_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-=======
->>>>>>> 24a7a651832e8bd39f7d48132019d9d28efc6af2
 }
