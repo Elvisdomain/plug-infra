@@ -17,14 +17,37 @@ module "ecs" {
   source            = "./modules/ecs"
   cluster_name      = var.ecs_cluster_name
   vpc_id            = module.vpc.vpc_id
+  security_group_id    = aws_security_group.my_sg.id
   private_subnets   = module.vpc.private_subnets
   ecr_repository_url   = "379565802996.dkr.ecr.af-south-1.amazonaws.com/plug-api:latest"
 }
 
 # ALB Module
-
 module "alb" {
-  source = "./modules/alb"
-  alb_security_groups = [module.vpc.default_security_group_id]
-  subnets             = module.vpc.public_subnets
+  source              = "./modules/alb"
+  vpc_id              = module.vpc.vpc_id
+  security_group_id    = aws_security_group.my_sg.id
+  public_subnets      = module.vpc.public_subnets
+  ecs_service_name    = module.ecs.service_name
+  target_group_arn    = module.ecs.target_group_arn
+}
+
+resource "aws_security_group" "my_sg" {
+  name        = "my-security-group"
+  description = "Security group for ECS"
+  vpc_id      = aws_vpc.my_vpc.id
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }

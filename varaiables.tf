@@ -17,7 +17,7 @@ variable "private_subnet_cidrs" {
 }
 
 variable "ecr_repository_name" {
-  default = "plug-api-repo"
+  default = "379565802996.dkr.ecr.af-south-1.amazonaws.com/plug-api:latest"
 }
 
 variable "ecs_cluster_name" {
