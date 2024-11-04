@@ -1,14 +1,3 @@
-provider "aws" {
-  region = var.aws_region
-}
-
-terraform {
-  backend "s3" {
-    bucket         = "plug-api-tf"
-    key            = "path/to/my/key"
-    region         = "af-south-1"
-  }
-}
 # VPC Module
 module "vpc" {
   source            = "./modules/vpc"
