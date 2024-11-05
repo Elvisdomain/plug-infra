@@ -34,7 +34,7 @@ module "alb" {
   vpc_id              = module.vpc.vpc_id
   security_group_id    = aws_security_group.my_sg.id
   public_subnets      = module.vpc.public_subnets
-  target_group_arn    = module.alb.target_group_arn
+  target_group_arn    = module.ecs.target_group_arn
   ecs_service_name    = module.ecs.service_name
 }
 

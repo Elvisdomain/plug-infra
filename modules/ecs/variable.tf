@@ -17,3 +17,12 @@ variable "security_group_id" {
 variable "ecr_repository_url" {
     type = string
 }
+
+variable "target_group_arn" {
+    type = string
+}
+
+variable "container_name" {
+    type = string
+}
+variable "container_port" {}

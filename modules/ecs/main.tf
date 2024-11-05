@@ -34,4 +34,9 @@ resource "aws_ecs_service" "service" {
     subnets          = var.private_subnets
     security_groups  = [var.security_group_id]
   }
+  load_balancer {
+    target_group_arn = var.target_group_arn
+    container_name   = "plug_api"
+    container_port   = 5050
+  }
 }
