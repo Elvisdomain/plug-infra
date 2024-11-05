@@ -6,6 +6,12 @@ module "vpc" {
   private_subnet_cidrs = var.private_subnet_cidrs
 }
 
+resource "aws_security_group" "my_sg" {
+  vpc_id = module.vpc.vpc_id
+  # other configurations
+}
+
+
 # ECR Module
 module "ecr" {
   source         = "./modules/ecr"
