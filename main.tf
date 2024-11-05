@@ -27,7 +27,6 @@ module "ecs" {
   private_subnets   = module.vpc.private_subnets
   container_name         = "plug_api"
   container_port         = 5050
-  target_group_arn       = module.alb.target_group_arn
   ecr_repository_url   = "379565802996.dkr.ecr.af-south-1.amazonaws.com/plug-api:latest"
 }
 
